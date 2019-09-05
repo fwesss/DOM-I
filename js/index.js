@@ -37,6 +37,69 @@ const siteContent = {
   },
 };
 
+
+const setImageSrc = (selector, src) => {
+  const image = document.querySelector(selector);
+  image.setAttribute('src', src);
+};
+
+
+// Navbar text
+const navLinks = document.querySelectorAll('nav a');
+const headings = document.querySelectorAll('h4');
+// Create array of nav texts from site object. Site object also has the img logo so we remove it.
+const linkText = Object.keys(siteContent.nav).map((key) => siteContent.nav[key]).slice(0, -1);
+
+Object.keys(navLinks).forEach((key) => {
+  navLinks[key].textContent = linkText[key];
+  headings[key].textContent = linkText[key];
+});
+
 // Example: Update the img src for the logo
-const logo = document.getElementById('logo-img');
-logo.setAttribute('src', siteContent.nav['img-src']);
+setImageSrc('#logo-img', siteContent.nav['img-src']);
+
+
+// Call to action
+const ctaHeading = document.querySelector('.cta-text h1');
+const ctaHeadingString = siteContent.cta.h1.split(' ');
+
+for (let i = 0; i < ctaHeadingString.length; i += 1) {
+  ctaHeading.append(ctaHeadingString[i]);
+  const br = document.createElement('br');
+  if (i === ctaHeadingString.length - 1) {
+    break;
+  }
+  ctaHeading.append(br);
+}
+
+// CTA Button
+const ctaButton = document.querySelector('.cta-text button');
+ctaButton.textContent = siteContent.cta.button;
+
+// CTA Image
+setImageSrc('#cta-img', siteContent.cta['img-src']);
+
+
+// Main Content
+const sectionParagraphs = document.querySelectorAll('.main-content p');
+const sectionTextKeys = Object.keys(siteContent['main-content']).filter((key) => siteContent['main-content'][key].includes('content'));
+
+Object.keys(sectionTextKeys).forEach((key) => {
+  sectionParagraphs[key].textContent = siteContent['main-content'][sectionTextKeys[key]];
+});
+
+// Middle Image
+setImageSrc('#middle-img', siteContent['main-content']['middle-img-src']);
+
+
+// Contact
+const contactFields = document.querySelectorAll('.contact p');
+const contactFieldKeys = Object.keys(siteContent.contact).slice(1);
+
+contactFieldKeys.forEach((key, index) => {
+  contactFields[index].textContent = siteContent.contact[key];
+});
+
+
+// Footer
+document.querySelector('footer p').textContent = siteContent.footer.copyright;
