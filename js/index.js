@@ -87,7 +87,7 @@ for (let i = 0; i < ctaHeadingString.length; i += 1) {
 }
 
 // CTA Button
-const ctaButton = document.querySelector('.cta-text button');
+const ctaButton = document.querySelector('.cta-text startButton');
 ctaButton.textContent = siteContent.cta.button;
 
 const popup = (message) => alert(message);
