@@ -90,6 +90,11 @@ for (let i = 0; i < ctaHeadingString.length; i += 1) {
 const ctaButton = document.querySelector('.cta-text button');
 ctaButton.textContent = siteContent.cta.button;
 
+const popup = (message) => alert(message);
+
+ctaButton.addEventListener('click', () => popup('Please wire $400,000 to begin using our awesome products.'));
+
+
 // CTA Image
 setImageSrc('#cta-img', siteContent.cta['img-src']);
 
