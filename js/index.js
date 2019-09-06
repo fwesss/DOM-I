@@ -39,12 +39,13 @@ const siteContent = {
 
 
 const setImageSrc = (selector, src) => {
-  const image = document.querySelector(selector);
-  image.setAttribute('src', src);
+  document.querySelector(selector).setAttribute('src', src);
 };
 
 
 // Navbar text
+const navigation = document.querySelector('nav');
+
 const navLinks = document.querySelectorAll('nav a');
 const headings = document.querySelectorAll('h4');
 // Create array of nav texts from site object. Site object also has the img logo so we remove it.
@@ -52,8 +53,21 @@ const linkText = Object.keys(siteContent.nav).map((key) => siteContent.nav[key])
 
 Object.keys(navLinks).forEach((key) => {
   navLinks[key].textContent = linkText[key];
+  navLinks[key].style.color = 'green';
   headings[key].textContent = linkText[key];
 });
+
+const createLink = (text) => {
+  const el = document.createElement('a');
+  el.setAttribute('href', '#');
+  el.textContent = text;
+  el.style.color = 'green';
+
+  return el;
+};
+
+navigation.prepend(createLink('Home'));
+navigation.appendChild(createLink('Pricing'));
 
 // Example: Update the img src for the logo
 setImageSrc('#logo-img', siteContent.nav['img-src']);
