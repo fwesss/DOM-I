@@ -1,1 +1,8 @@
 .DS_Store
+.idea/
+.eslintrc.json
+.stylelintrc
+package-lock.json
+yarn.lock
+package.json
+node_modules/
